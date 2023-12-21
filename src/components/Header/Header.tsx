@@ -1,10 +1,14 @@
 import { FC, useContext } from "react";
 import { Theme } from "@/store/theme";
+import { useRouter } from "next/router";
 import changeTheme from "../../../public/static/switch.svg";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
-export const Header: FC = ({ withArrow }) => {
+interface HeaderProps {
+  withArrow: boolean;
+}
+
+export const Header: FC<HeaderProps> = ({ withArrow }) => {
   const { currentTheme, toggleTheme } = useContext(Theme);
   const router = useRouter();
 
