@@ -1,25 +1,37 @@
 import { FC, useContext } from "react";
 import { Theme } from "@/store/theme";
 import changeTheme from "../../../public/static/switch.svg";
-import changeThemeBlack from "../../../public/static/black-switch.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-export const Header: FC = () => {
+export const Header: FC = ({ withArrow }) => {
   const { currentTheme, toggleTheme } = useContext(Theme);
+  const router = useRouter();
+
+  const onArrowClick = () => {
+    router.push("/");
+  };
 
   return (
     <header
-      className={`flex items-center py-10 w-full  justify-center items-center  top-0 left-0 px-5 ${
+      className={`flex items-center py-5 w-full   justify-center items-center  top-0 left-0 px-5 border-b-2 border-gray-700 ${
         currentTheme == "black" ? "text-white" : "text-black"
       }`}
       style={{ zIndex: 6 }}>
       <div className="container flex justify-between">
-        <h1 className="text-4xl flex  leading-loose ">LordF</h1>
+        <h1 className="text-4xl flex leading-loose ">FILMOTEKA</h1>
         <div className="flex items-center">
+          {withArrow && (
+            <button
+              className="text-5xl cursor-pointer p-3"
+              onClick={onArrowClick}>
+              {"<"}
+            </button>
+          )}
           <Image
             width={40}
             height={40}
-            src={currentTheme == "black" ? changeThemeBlack : changeTheme}
+            src={changeTheme}
             className={`cursor-pointer ml-4 hover:invert`}
             alt="theme switch p-2"
             onClick={toggleTheme}

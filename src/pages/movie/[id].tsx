@@ -9,13 +9,8 @@ import { Header } from "@/components/Header/Header";
 import { Theme } from "@/store/theme";
 import { useRouter } from "next/router";
 import { Footer } from "@/components/Footer/Footer";
-import cd from "../../../public/static/cd.png";
-import file from "../../../public/static/file.png";
-import res from "../../../public/static/res.png";
 import Image from "next/image";
 import star from "../../../public/static/star.png";
-import arrow from "../../../public/static/arrow.png";
-import arrowWhite from "../../../public/static/arrow-white.png";
 
 const Details: FC = () => {
   const [movieDetails, setMovieDetails] = useState<MovieList>();
@@ -61,30 +56,37 @@ const Details: FC = () => {
 
   return (
     <div
-      className={`bg-movie ${currentTheme == "black" ? "bg_black" : ""}`}
+      className={`bg ${currentTheme == "black" ? "bg_black" : ""}`}
       style={{
         backgroundColor: `${currentTheme == "black" ? "#484848" : "#F1F1F1"}`,
-        color: `${currentTheme == "black" ? "#E0E0E0" : "#484848"}`,
+        color: `${currentTheme == "black" ? "white" : "black"}`,
       }}>
-      <Header />
+      <Header withArrow={true} />
       {!loading ? (
-        <section className="min-h-screen flex items-center flex-col pb-20 px-4 relative">
+        <section className="min-h-screen flex items-center flex-col pb-20 px-4 relative py-10">
+          <Image
+            src={movieDetails?.background_image}
+            width={900}
+            height={500}
+            alt="bg"
+            onError={(e) => console.log((e.target.style.display = "none"))}
+            style={{
+              maxHeight: "500px",
+              width: "100%",
+              aspectRatio: "16/9",
+              objectFit: "cover",
+              borderRadius: "4.5em",
+            }}
+            className="  w-full brightness-50 p-10  rounded-lg max-lg:hidden"
+          />
           <div className="container flex flex-col lg:flex-row items-start">
             <div>
               <div className="mb-5 flex flex-col">
-                <button
-                  className="text-2xl mb-3 ml-auto"
-                  onClick={onBackClick}>
-                  Back
-                </button>
-                <Image
-                  onClick={onBackClick}
-                  src={currentTheme == "black" ? arrowWhite : arrow}
-                  className={`mb-10 p-5 cursor-pointer`}
-                  alt="arrow"
-                />
                 <Image
                   loading="lazy"
+                  onError={(e) =>
+                    console.log((e.target.style.display = "none"))
+                  }
                   width={460}
                   height={600}
                   src={movieDetails?.large_cover_image || ""}
@@ -149,18 +151,18 @@ const Details: FC = () => {
               onChange={onCommentChange}
               value={comment.name}
               type="text"
-              className="w-80 bg-white border-2 p-2 mb-2 rounded-md "
+              className=" max-w-md  bg-white border-2 p-5 mb-2 rounded-md  text-black"
             />
             <p className=" mb-2">Comment</p>
             <textarea
               value={comment.text}
               onChange={onCommentChange}
               name="text"
-              className="w-full bg-white border-2 p-2 rounded-md"
+              className="w-full bg-white border-2 p-5 rounded-md max-w-md text-black mb-5"
             />
             <button
               onClick={onSendComment}
-              className="ml-auto border-2 rounded-md p-3 mt-3 bg-stone-700 hover:bg-stone-400 text-gray-300 hover:text-white mb-4          
+              className="mr-auto border-2 rounded-md py-5 px-10 mt-3 bg-black text-white mb-12          
               ">
               Send
             </button>

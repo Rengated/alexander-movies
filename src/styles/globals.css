@@ -8,11 +8,12 @@ body{
  
 
 .active__item a{
-    color: black;
+
+    color: #1f4798;
 }
 
 .active__item_black a{
-    color: white;
+    color: yellow;
 }
 
 .page-item {
@@ -23,11 +24,15 @@ body{
 .bg{
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('../../public/static/background.png');
+    background-image: url('../../public/static/background-modified.jpg');
+
 }
 
-.bg_black{
-    background-blend-mode: difference;
+ 
+
+.bg_black{ 
+    background-image: url('../../public/static/background.jpg');
+
 }
 
 .-z-index-1{
@@ -41,7 +46,11 @@ body{
 .bg-movie{
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../public/static/bg-movie.png');
+    background-image: url('../../public/static/background.jpg');
+
     background-position: bottom;
 
+}
+.blur-img:hover{
+    filter: blur(8px);
 }
