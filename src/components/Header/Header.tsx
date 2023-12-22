@@ -26,11 +26,16 @@ export const Header: FC<HeaderProps> = ({ withArrow }) => {
         <h1 className="text-4xl flex leading-loose ">FILMOTEKA</h1>
         <div className="flex items-center">
           {withArrow && (
-            <button
-              className="text-5xl cursor-pointer p-3"
+            <div
+              className={`border px-5 py-3 text-2xl cursor-pointer rounded-lg ${
+                currentTheme == "black"
+                  ? "bg-white text-black "
+                  : "bg-black text-white"
+              }`}
               onClick={onArrowClick}>
-              {"<"}
-            </button>
+              <span>{"<"}</span>
+              <span className="font-bold ml-4 ">Go back</span>
+            </div>
           )}
           <Image
             width={40}

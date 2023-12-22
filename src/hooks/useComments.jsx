@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export const useComments = (id) => {
   const [comments, setComments] = useState([]);
+
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem(id));
     if (data?.length) {
